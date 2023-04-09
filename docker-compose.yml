@@ -27,7 +27,7 @@ services:
             target: build
         restart: always
         volumes:
-            - ./:/src
+            - .:/src
             - ./docker/supervisord/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
         command: [ "/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf" ]
     db:
