@@ -46,10 +46,7 @@ class RowImport implements
         foreach ($array as $row) {
             $dto = RowMapDto::fromArray($row);
 
-            $model = Row::updateOrCreate(
-                $dto->attributes->toArray(),
-                $dto->values->toArray(),
-            );
+            $model = Row::updateOrCreate(...$dto->toArray());
 
             Redis::incr($this->cacheKey());
             event(new RowCreated($model));
